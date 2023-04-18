@@ -1,11 +1,7 @@
 package main
+
 import "fmt"
 
-
-func server_
-
-
-func main(){
+func main() {
 	fmt.Println("server_start")
-
 }
