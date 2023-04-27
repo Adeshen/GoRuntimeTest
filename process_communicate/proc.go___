@@ -143,6 +143,7 @@ var initSigmask sigset
 
 type Test_Call interface {
 	S()
+	// S( int)
 }
 type Default_Call struct {
 }
