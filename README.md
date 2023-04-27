@@ -4,13 +4,13 @@ to find out something interesting in Go runtime
 
 * [X] insert code into runtime
 * [X] add a pipe in runtime
-* [ ] 
+* [ ] make clean how g run a function
 
 # 1.insert code into runtime
 
 you can use the file in `runtime_change` to test after inserting code
 
-# 2.process_communicate
+# 2.process_communicate     (give up)
 
 
 
@@ -63,7 +63,11 @@ func Pipe(p []Handle) (err error) {
 
 
 
-/
+
+
+# 3. G how to run a function
+
+
 
 
 
