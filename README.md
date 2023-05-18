@@ -4,15 +4,13 @@ to find out something interesting in Go runtime
 
 * [X] insert code into runtime
 * [X] add a pipe in runtime
-* [ ] 
+* [ ]
 
 # 1.insert code into runtime
 
 you can use the file in `runtime_change` to test after inserting code
 
 # 2.process_communicate
-
-
 
 ## Add a pipe  runtime
 
@@ -26,8 +24,6 @@ func syscall_write(fd, buf, nbyte uintptr) (n, err uintptr)
 
 ```
 
-
-
 /usr/lib/go-1.18/src/os
 
 ```go
@@ -40,8 +36,6 @@ func Pipe() (r *File, w *File, err error) {
 	return newFile(p[0], "|0", "pipe"), newFile(p[1], "|1", "pipe"), nil
 }
 ```
-
-
 
 /usr/lib/go-1.18/src/syscall/syscall_windows.go
 
@@ -60,12 +54,3 @@ func Pipe(p []Handle) (err error) {
 	return nil
 }
 ```
-
-
-
-/
-
-
-
-
-
