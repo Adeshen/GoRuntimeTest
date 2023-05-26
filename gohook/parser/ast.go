@@ -8,7 +8,6 @@ import (
 )
 
 func AddImport(file *ast.File, packageName string, filename string) {
-
 	print("AddImport ", filename, "\n")
 	noImport := true
 	toInsert := &ast.ImportSpec{
@@ -46,5 +45,28 @@ func AddImport(file *ast.File, packageName string, filename string) {
 		file.Decls = decls
 		fmt.Println("noImport")
 	}
+}
 
+type FunctionVisitor struct {
+	Functions []string
+}
+
+func (v *FunctionVisitor) Visit(node ast.Node) ast.Visitor {
+	switch n := node.(type) {
+	case *ast.FuncDecl:
+		v.Functions = append(v.Functions, n.Name.Name)
+	}
+	return v
+}
+
+func FindFunctions(node ast.Node) []string {
+
+	// Create an instance of the FunctionVisitor
+	visitor := &FunctionVisitor{}
+
+	// Visit the AST nodes to find functions
+	ast.Walk(visitor, node)
+
+	// Return the list of functions
+	return visitor.Functions
 }

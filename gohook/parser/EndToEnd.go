@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"go/parser"
 	"go/printer"
 	"go/token"
@@ -21,7 +22,14 @@ func SourceFileAddImport(source_file string, out_file string) {
 		log.Fatalln(err)
 	}
 
+	/* ----------------
+	all changes on ast should be here:
+		1.AddImport
+	*/
+
 	AddImport(f, "\"hook.com/hook/parser\"", "parser/ast.go")
+	function_name := FindFunctions(f)
+	fmt.Println(function_name)
 
 	// printer.Fprint(os.Stdout, fs, f)
 	out, err := os.Create(out_file)
