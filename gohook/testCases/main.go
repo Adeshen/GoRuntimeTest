@@ -1,6 +1,8 @@
 package main
 
-func test1() {
+var hell int
+
+func te1111() {
 
 }
 
@@ -14,5 +16,5 @@ func test3() {
 
 func main() {
 
-	go test1()
+	go test2()
 }

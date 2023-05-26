@@ -80,10 +80,9 @@ type GoNameVisitor struct {
 func (v *GoNameVisitor) Visit(node ast.Node) ast.Visitor {
 	switch n := node.(type) {
 	case *ast.GoStmt:
-		// waiting for solution:  find the go stmt and get the ident name after go keyword.
+		//
 		if ident, ok := n.Call.Fun.(*ast.Ident); ok {
 			v.Names = append(v.Names, ident.Name)
-			fmt.Println(ident.Name)
 		}
 
 	}
@@ -91,10 +90,8 @@ func (v *GoNameVisitor) Visit(node ast.Node) ast.Visitor {
 }
 
 func findGoNames(node ast.Node) []string {
-
 	// Create an instance of the GoNameVisitor
 	visitor := &GoNameVisitor{}
-
 	// Visit the AST nodes to find names used with "go"
 	ast.Walk(visitor, node)
 	// Return the list of names

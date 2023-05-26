@@ -28,10 +28,13 @@ func SourceFileAdd(source_file string, out_file string) {
 	*/
 
 	AddImport(f, "\"hook.com/hook/parser\"", "parser/ast.go")
+
 	function_name := FindFunctions(f)
 	fmt.Println(function_name)
+
 	gofunction_name := findGoNames(f)
 	fmt.Println(gofunction_name)
+
 	printAst(f)
 
 	// printer.Fprint(os.Stdout, fs, f)
