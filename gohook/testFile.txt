@@ -1,7 +1,8 @@
 package parser
 
 import (
-	// _ "hook.com/hook/parser"
+	_ "hook.com/hook/parser"
+
 	"fmt"
 	"go/ast"
 	"go/token"
@@ -16,11 +17,11 @@ func AddImport(file *ast.File, packageName string, filename string) {
 			Name: "_",
 		},
 		Path: &ast.BasicLit{
-			ValuePos: 0,
-			Kind:     token.STRING,
-			Value:    packageName,
+			ValuePos:	0,
+			Kind:		token.STRING,
+			Value:		packageName,
 		},
-		EndPos: 0,
+		EndPos:	0,
 	}
 	for _, decl := range file.Decls {
 		fd, ok := decl.(*ast.GenDecl)
@@ -38,8 +39,8 @@ func AddImport(file *ast.File, packageName string, filename string) {
 		imports := make([]ast.Spec, 0, 1)
 		imports = append(imports, toInsert)
 		decl := &ast.GenDecl{
-			Tok:   token.IMPORT,
-			Specs: imports,
+			Tok:	token.IMPORT,
+			Specs:	imports,
 		}
 		decls = append(decls, decl)
 		decls = append(decls, file.Decls...)
