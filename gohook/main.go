@@ -21,6 +21,6 @@ func main() {
 	// out, _ := os.Create("testFile.txt")
 
 	// printer.Fprint(out, fs, f)
-	p.SourceFileAddImport("parser/ast.go", "testFile.txt")
+	p.SourceFileAdd("testCases/main.go", "testFile.txt")
 
 }

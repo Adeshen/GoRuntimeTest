@@ -1,7 +1,5 @@
 package main
 
-import _ "hook.com/hook/parser"
-
 func test1() {
 
 }

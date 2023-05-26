@@ -2,9 +2,11 @@ package parser
 
 import (
 	// _ "hook.com/hook/parser"
+
 	"fmt"
 	"go/ast"
 	"go/token"
+	"strings"
 )
 
 func AddImport(file *ast.File, packageName string, filename string) {
@@ -29,7 +31,7 @@ func AddImport(file *ast.File, packageName string, filename string) {
 			imports = append(imports, fd.Specs...)
 			fd.Specs = imports
 			noImport = false
-			fmt.Println("import true")
+			// fmt.Println("import true")
 		}
 	}
 	if noImport {
@@ -43,7 +45,7 @@ func AddImport(file *ast.File, packageName string, filename string) {
 		decls = append(decls, decl)
 		decls = append(decls, file.Decls...)
 		file.Decls = decls
-		fmt.Println("noImport")
+		// fmt.Println("noImport")
 	}
 }
 
@@ -69,4 +71,54 @@ func FindFunctions(node ast.Node) []string {
 
 	// Return the list of functions
 	return visitor.Functions
+}
+
+type GoNameVisitor struct {
+	Names []string
+}
+
+func (v *GoNameVisitor) Visit(node ast.Node) ast.Visitor {
+	switch n := node.(type) {
+	case *ast.GoStmt:
+		// waiting for solution:  find the go stmt and get the ident name after go keyword.
+		if ident, ok := n.Call.Fun.(*ast.Ident); ok {
+			v.Names = append(v.Names, ident.Name)
+			fmt.Println(ident.Name)
+		}
+
+	}
+	return v
+}
+
+func findGoNames(node ast.Node) []string {
+
+	// Create an instance of the GoNameVisitor
+	visitor := &GoNameVisitor{}
+
+	// Visit the AST nodes to find names used with "go"
+	ast.Walk(visitor, node)
+	// Return the list of names
+	return visitor.Names
+}
+
+type printVisitor struct {
+	line    int
+	context []string
+}
+
+func (v printVisitor) Visit(n ast.Node) ast.Visitor {
+	if n == nil {
+		return nil
+	}
+
+	fmt.Printf("%s%T\n", strings.Repeat("\t", v.line), n)
+	v.line++
+	return v
+}
+
+func printAst(node ast.Node) {
+	visitor := &printVisitor{}
+	ast.Walk(visitor, node)
+	// Return the list of names
+
 }
