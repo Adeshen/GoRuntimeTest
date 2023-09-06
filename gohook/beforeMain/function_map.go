@@ -10,3 +10,4 @@ func BuildMap(functions []string) {
 		Functions_Map[funcName] = funcPtr
 	}
 }
+

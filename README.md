@@ -4,7 +4,12 @@ to find out something interesting in Go runtime
 
 * [X] insert code into runtime
 * [X] add a pipe in runtime
-* [ ]
+
+
+
+**now we change direction to leverage ast package to preprocess the source  project, so that we could finish the task**
+
+
 
 # 1.insert code into runtime
 
@@ -54,3 +59,12 @@ func Pipe(p []Handle) (err error) {
 	return nil
 }
 ```
+
+
+
+# 3 go hook
+
+
+
+
+
